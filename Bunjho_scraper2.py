@@ -19,9 +19,9 @@ async def main():
         page.waitForNavigation(),
     ])
 
-    for tr in await page.querySelectorAll('body > table > tbody > tr'):
+    for tr in await page.querySelectorAll('body > table > tbody > tr > td > table > tbody > tr'):
         for td in await page.querySelectorAll('tr > td'):
-            text = await page.evaluate('(e) => e.textContent',td)
+            text = await page.evaluate('(e) => e.innerText',td)
             print(text)
 
 
