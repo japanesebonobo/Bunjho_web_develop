@@ -68,6 +68,7 @@ def scrape_detail_page(response:requests.Response):
     for td in soup.select('.registerStats > td'):
         score.append(td.text.strip())
 
+
     name = []
     for li in soup.select('li#pc_v_name'):
         name.append(li.text.strip())
