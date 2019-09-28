@@ -19,7 +19,15 @@ async def main():
         page.waitForNavigation(),
     ])
 
-    await page.screenshot({'path':'search_results.png'})
+    for tr in await page.querySelectorAll('body > table > tbody > tr'):
+        for td in await page.querySelectorAll('tr > td'):
+            text = await page.evaluate('(e) => e.textContent',h3)
+            print(text)
+            a = await page.evaluateHandle('(e) => e.parentElement',h3)
+            url = await page.evaluate('(e) => e.href',a)
+            print(url)
+
+    # await page.screenshot({'path':'search_results.png'})
 
     # assert 'Python' in (await page.title())
 
