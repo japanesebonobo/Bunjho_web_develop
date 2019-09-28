@@ -21,11 +21,9 @@ async def main():
 
     for tr in await page.querySelectorAll('body > table > tbody > tr'):
         for td in await page.querySelectorAll('tr > td'):
-            text = await page.evaluate('(e) => e.textContent',h3)
+            text = await page.evaluate('(e) => e.textContent',td)
             print(text)
-            a = await page.evaluateHandle('(e) => e.parentElement',h3)
-            url = await page.evaluate('(e) => e.href',a)
-            print(url)
+
 
     # await page.screenshot({'path':'search_results.png'})
 
