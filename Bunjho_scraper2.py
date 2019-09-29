@@ -1,5 +1,6 @@
 import asyncio
 from pyppeteer import launch
+import pandas as pd
 
 async def main():
     """
@@ -19,11 +20,17 @@ async def main():
         page.waitForNavigation(),
     ])
 
-    for tr in await page.querySelectorAll('body > table > tbody > tr > td > table > tbody > tr'):
-        for td in await page.querySelectorAll('tr > td'):
-            text = await page.evaluate('(e) => e.innerText',td)
-            print(text)
+    subjectData = []
 
+    for td in await page.querySelectorAll('body > table > tbody > tr > td > table > tbody > tr > td'):
+        text = await page.evaluate('(e) => e.innerText',td)
+        text = text.strip()
+        subjectData.append(text)
+        # print(text)
+
+    subjectData = pd.DataFrame(subjectData)
+    print(subjectData)
+    subjectData.to_csv('/Users/yoshitomiyuuta/Bunjho_web_develop/subjectData.csv')
 
     # await page.screenshot({'path':'search_results.png'})
 
