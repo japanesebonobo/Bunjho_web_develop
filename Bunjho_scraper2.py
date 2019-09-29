@@ -1,12 +1,13 @@
 import asyncio
 from pyppeteer import launch
 import pandas as pd
+import time
 
 async def main():
     """
     メインの処理
     """
-    browser = await launch()
+    browser = await launch(autoClose=False,headless=False)
 
     page = await browser.newPage()
     await page.goto('https://syllabus.doshisha.ac.jp/')
@@ -22,11 +23,19 @@ async def main():
 
     subjectData = []
 
-    for td in await page.querySelectorAll('body > table > tbody > tr > td > table > tbody > tr > td'):
-        text = await page.evaluate('(e) => e.innerText',td)
-        text = text.strip()
-        subjectData.append(text)
-        # print(text)
+    for i in range(20):
+        await page.select('select[name="selectNum"]', str(i+1))
+        await asyncio.wait([
+            page.click('input[value="指定結果一覧/Specified page"]'),
+            page.waitForNavigation(),
+        ])
+        
+        for td in await page.querySelectorAll('body > table > tbody > tr > td > table > tbody > tr > td'):
+            # time.sleep(1)
+            text = await page.evaluate('(e) => e.innerText',td)
+            text = text.strip()
+            subjectData.append(text)
+            print(text)
 
     subjectData = pd.DataFrame(subjectData)
     print(subjectData)
