@@ -2,8 +2,6 @@ import asyncio
 from pyppeteer import launch
 import pandas as pd
 import time
-from urllib.parse import urljoin
-from bs4 import BeautifulSoup
 
 async def main():
     """
