@@ -55,7 +55,7 @@ async def main():
         await page.goto(str(row[0]))
 
         for td in await page.querySelectorAll('body > div > table > tbody > tr > td > table > tbody > tr > td'):
-            time.sleep(1)
+            time.sleep(0.1)
             score = await page.evaluate('(e) => e.innerText',td)
             score = score.strip()
             scoreData.append(score)
