@@ -93,7 +93,7 @@ async def main():
             sd.append(score)
             #print(score)
         #print(sd)
-        scoreData[cnt]=my_make_score(sd)
+        scoreData[cnt]= my_make_score.my_make_score(sd)
         print(subjectData[cnt][2])
         print(scoreData[cnt])
         print("-----------------------------------------------------------------------")
@@ -106,7 +106,6 @@ async def main():
     print("succes")
     await browser.close()
     print("DataFrame作成")
-    df=make_df(subjectData,linkData,scoreData)
     df.to_csv("scraping_doshisha.tsv",index=False,sep="\t")
     #return df
 
