@@ -14,7 +14,6 @@ async def main():
 
     await page.select('select[name="select_bussinessyear"]', '2018')
     await page.select('select[name="subjectcd"]', '9')
-    # await input_element.type('Python')
 
     await asyncio.wait([
         page.click('input[value="検索/Search"]'),
@@ -49,19 +48,6 @@ async def main():
     print(linkData)
     subjectData.to_csv('/Users/yoshitomiyuuta/Bunjho_web_develop/subjectData.csv')
     linkData.to_csv('/Users/yoshitomiyuuta/Bunjho_web_develop/linkData.csv')
-
-    # await page.screenshot({'path':'search_results.png'})
-
-    # assert 'Python' in (await page.title())
-
-    # await page.screenshot({'path':'search_results.png'})
-
-    # for h3 in await page.querySelectorAll('a > h3'):
-    #     text = await page.evaluate('(e) => e.textContent',h3)
-    #     print(text)
-    #     a = await page.evaluateHandle('(e) => e.parentElement',h3)
-    #     url = await page.evaluate('(e) => e.href',a)
-    #     print(url)
 
     await browser.close()
 
