@@ -2,89 +2,11 @@ import asyncio
 from pyppeteer import launch
 import pandas as pd
 import time
+import make_df
+import my_make_score
+import my_make_pre_score
 
 async def main():
-    def my_make_pre_score(df):
-        for i in range(len(df)-1,0,-1):
-            try:
-                spam=int(df[i])
-                pre_score=[0]*8
-                pre_score[0]=spam
-                #print(i,df[i],spam)
-                print("ok")
-                for l in range(1,8):
-                    pre_score[l]=float(df[i+l])
-                return pre_score
-            except:
-                pass
-        print("なし")
-        return [None,None,None,None,None,None,None,None]
-
-    def my_make_score(sd):
-    #     my_score=[0]*len(scoreData)
-    #     for i in range(len(scoreData)):
-        bool_int=False
-        bool_per=False
-        bool_start=False
-        bool_ins=False
-        pre_score=[]
-        cnt=0
-        ins=0
-        for i in range(len(sd)):
-            if bool_int:
-                if bool_per:
-                    if bool_start:
-                        pre_score.append(float(sd[i]))
-                        cnt+=1
-                        if cnt==7:
-                            break
-                    else:
-                        try:
-                            pre_score.append(int(sd[i]))
-                            bool_start=True
-                        except:
-                            continue
-                else:
-                    if len(sd[i])!=0:
-                        if sd[i][-1]=="%":
-                            bool_per=True
-            else:
-                try:
-                    if int(sd[i])==15:
-                        bool_int=True
-                except:
-                    try:
-                        spam=float(sd[i])
-                        ins+=1
-                    except:
-                        if ins >=7:
-                            bool_ins=True
-                        ins=0
-        if cnt==0:
-            if bool_ins:
-                pre_score=my_make_pre_score(sd)
-            else:
-                pre_score=[None,None,None,None,None,None,None,None]
-    #             print(f"""
-    #             {i}個目
-    #             bool_int : {bool_int}
-    #             bool_per : {bool_per}
-    #             bool_start : {bool_start}
-    #             bool_ins : {bool_ins}
-    #             """)
-    #     my_score[i]=pre_score
-        return pre_score
-
-    def make_df(a,b,c):
-        a_b=[0]*len(a)
-        for i in range(len(a)):
-            a_b[i]=a[i]
-            a_b[i].append(b[i])
-        df_ab=pd.DataFrame(a_b)
-        df_c=pd.DataFrame(c)
-        df=pd.merge(df_ab,df_c,right_index=True,left_index=True)
-        df.columns=["code","type","faculty","teacher","place","units","url","people","A","B","C","D","F","other","mean"]
-        return df
 
     """
     メインの処理
