@@ -31,7 +31,7 @@ async def main():
         ])
         
         for td in await page.querySelectorAll('body > table > tbody > tr > td > table > tbody > tr > td'):
-            # time.sleep(1)
+            time.sleep(0.1)
             text = await page.evaluate('(e) => e.innerText',td)
             text = text.strip()
             subjectData.append(text)
