@@ -1,6 +1,7 @@
 import asyncio
 from pyppeteer import launch
 import pandas as pd
+import my_make_pre_score
 
 def my_make_score(sd):
     #     my_score=[0]*len(scoreData)
@@ -44,7 +45,7 @@ def my_make_score(sd):
                         ins=0
         if cnt==0:
             if bool_ins:
-                pre_score=my_make_pre_score(sd)
+                pre_score=my_make_pre_score.my_make_pre_score(sd)
             else:
                 pre_score=[None,None,None,None,None,None,None,None]
     #             print(f"""

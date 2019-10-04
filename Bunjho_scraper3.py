@@ -5,6 +5,7 @@ import time
 import make_df
 import my_make_score
 import my_make_pre_score
+import sqlalchemy as sa
 
 async def main():
 
@@ -100,14 +101,27 @@ async def main():
         cnt+=1
         time.sleep(1)
 
-    #scoreData = pd.DataFrame(scoreData)
+    subjectData = pd.DataFrame(subjectData)
+    linkData = pd.DataFrame(linkData)
+    scoreData = pd.DataFrame(scoreData)
     #print(scoreData)
     #scoreData.to_csv('/Users/yoshitomiyuuta/Bunjho_web_develop/scoreData.csv')
+
     print("succes")
     await browser.close()
+
     print("DataFrame作成")
-    df.to_csv("scraping_doshisha.tsv",index=False,sep="\t")
-    #return df
+    url = 'mysql+pymysql://root:@localhost/bunjho_web_database?charset=utf8'
+    engine = sa.create_engine(url, echo=True)
+
+    # df1 = pd.concat([subjectData,linkData],axis=1)
+    # df2 = pd.concat([df1,scoreData],axis=1)
+    # print(df1)
+    # print(df2)
+    # df2 = pd.DataFrame(df2)
+    linkData.to_sql('linkData', engine, index=False, if_exists='replace')
+    subjectData.to_sql('subjectData', engine, index=False, if_exists='replace')
+    scoreData.to_sql('scoreData', engine, index=False, if_exists='replace')
 
 if __name__=='__main__':
     asyncio.run(main())
