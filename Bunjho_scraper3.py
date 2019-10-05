@@ -111,17 +111,44 @@ async def main():
     await browser.close()
 
     print("DataFrame作成")
-    url = 'mysql+pymysql://root:@localhost/bunjho_web_database?charset=utf8'
+    url = 'mysql+pymysql://root:@localhost/bunjho_web_database?charset=utf8mb4'
     engine = sa.create_engine(url, echo=True)
 
-    # df1 = pd.concat([subjectData,linkData],axis=1)
-    # df2 = pd.concat([df1,scoreData],axis=1)
-    # print(df1)
-    # print(df2)
-    # df2 = pd.DataFrame(df2)
-    linkData.to_sql('linkData', engine, index=False, if_exists='replace')
-    subjectData.to_sql('subjectData', engine, index=False, if_exists='replace')
-    scoreData.to_sql('scoreData', engine, index=False, if_exists='replace')
+    df1 = pd.concat([subjectData,linkData],axis=1)
+    df2 = pd.concat([df1,scoreData],axis=1)
+    print(df1)
+    print(df2)
+    df2 = pd.DataFrame(df2)
+    df2.to_sql('AllSubjectData', engine, index=False, if_exists='replace')
+    # linkData.to_sql('linkData', engine, index=False, if_exists='replace')
+    # subjectData.to_sql('subjectData', engine, index=False, if_exists='replace')
+    # scoreData.to_sql('scoreData', engine, index=False, if_exists='replace')
+
+    db_config = {
+    'host': 'localhost',
+    'db': 'bunjho_web_database',  # Database Name
+    'user': 'root',
+    'charset': 'utf8mb4',
+    }
+ 
+    try:
+        # 接続
+        conn = MySQLdb.connect(host=db_config['host'], db=db_config['db'], user=db_config['user'], charset=db_config['charset'])
+    except MySQLdb.Error as ex:
+        print('MySQL Error: ', ex)
+
+    cursor = conn.cursor()
+ 
+    # テーブルが存在する場合には削除
+    cursor.execute('DROP TABLE IF EXISTS `students`')
+    
+    # テーブルの作成 
+    cursor.execute('''CREATE TABLE IF NOT EXISTS `students` (
+        `id` int(11) NOT NULL,
+        `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+        PRIMARY KEY (id)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci''')
+    print('Create Table successful.')
 
 if __name__=='__main__':
     asyncio.run(main())
