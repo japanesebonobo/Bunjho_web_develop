@@ -119,10 +119,9 @@ async def main():
     print(df1)
     print(df2)
     df2 = pd.DataFrame(df2)
-    df2.to_sql('AllSubjectData', engine, index=False, if_exists='replace')
-    # linkData.to_sql('linkData', engine, index=False, if_exists='replace')
-    # subjectData.to_sql('subjectData', engine, index=False, if_exists='replace')
-    # scoreData.to_sql('scoreData', engine, index=False, if_exists='replace')
+    linkData.to_sql('linkData', engine, index=True, if_exists='replace')
+    subjectData.to_sql('subjectData', engine, index=True, if_exists='replace')
+    scoreData.to_sql('scoreData', engine, index=True, if_exists='replace')
 
     db_config = {
     'host': 'localhost',
@@ -140,13 +139,49 @@ async def main():
     cursor = conn.cursor()
  
     # テーブルが存在する場合には削除
-    cursor.execute('DROP TABLE IF EXISTS `students`')
+    cursor.execute('DROP TABLE IF EXISTS `AllSubjectData`')
     
+    cursor.execute('''ALTER TABLE `subjectData`
+        CHANGE COLUMN `index` `subjectData_index` int,
+        CHANGE COLUMN `0` `subjectNo` text,
+        CHANGE COLUMN `1` `faculty` text,
+        CHANGE COLUMN `2` `subjectName` text,
+        CHANGE COLUMN `3` `teacher` text,
+        CHANGE COLUMN `4` `place` text,
+        CHANGE COLUMN `5` `units` text
+    ''')
+
+    cursor.execute('''ALTER TABLE `scoreData`
+        CHANGE COLUMN `index` `scoreData_index` int,
+        CHANGE COLUMN `0` `member` int,
+        CHANGE COLUMN `1` `A` float,
+        CHANGE COLUMN `2` `B` float,
+        CHANGE COLUMN `3` `C` float,
+        CHANGE COLUMN `4` `D` float,
+        CHANGE COLUMN `5` `F` float,
+        CHANGE COLUMN `6` `other` int,
+        CHANGE COLUMN `7` `averageGPA` float
+    ''')
+
+    cursor.execute('''ALTER TABLE `linkData`
+        CHANGE COLUMN `index` `scoreData_index` int,
+        CHANGE COLUMN `0` `link` text
+    ''')
+
     # テーブルの作成 
-    cursor.execute('''CREATE TABLE IF NOT EXISTS `students` (
-        `id` int(11) NOT NULL,
-        `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-        PRIMARY KEY (id)
+    cursor.execute('''CREATE TABLE IF NOT EXISTS `AllSubjectData` (
+    SELECT
+    *
+    FROM
+    subjectData
+    JOIN
+    scoreData
+    ON
+    subjectData.index = scoreData.index
+    RIGHT JOIN
+    linkData
+    ON
+    subjectData.index = linkData.index
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci''')
     print('Create Table successful.')
 
