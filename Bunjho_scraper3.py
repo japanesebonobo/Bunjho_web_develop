@@ -142,6 +142,7 @@ async def main():
     # テーブルが存在する場合には削除
     cursor.execute('DROP TABLE IF EXISTS `AllSubjectData`')
     
+    # 各テーブルの列名を設定
     cursor.execute('''ALTER TABLE `subjectData`
         CHANGE COLUMN `index` `subjectData_index` int,
         CHANGE COLUMN `0` `subjectNo` text,
@@ -169,7 +170,7 @@ async def main():
         CHANGE COLUMN `0` `link` text
     ''')
 
-    # テーブルの作成 
+    # AllSubjectDataテーブルの作成 
     cursor.execute('''CREATE TABLE AllSubjectData
     SELECT *
     FROM subjectData
