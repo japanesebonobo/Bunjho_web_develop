@@ -6,6 +6,7 @@ import make_df
 import my_make_score
 import my_make_pre_score
 import sqlalchemy as sa
+import MySQLdb
 
 async def main():
 
