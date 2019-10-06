@@ -165,25 +165,20 @@ async def main():
     ''')
 
     cursor.execute('''ALTER TABLE `linkData`
-        CHANGE COLUMN `index` `scoreData_index` int,
+        CHANGE COLUMN `index` `linkData_index` int,
         CHANGE COLUMN `0` `link` text
     ''')
 
     # テーブルの作成 
-    cursor.execute('''CREATE TABLE IF NOT EXISTS `AllSubjectData` (
-    SELECT
-    *
-    FROM
-    subjectData
-    JOIN
-    scoreData
+    cursor.execute('''CREATE TABLE AllSubjectData
+    SELECT *
+    FROM subjectData
+    JOIN scoreData
     ON
-    subjectData.index = scoreData.index
-    RIGHT JOIN
-    linkData
+    subjectData.subjectData_index = scoreData.scoreData_index
+    JOIN linkData
     ON
-    subjectData.index = linkData.index
-    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci''')
+    scoreData.scoreData_index = linkData.linkData_index''')
     print('Create Table successful.')
 
 if __name__=='__main__':

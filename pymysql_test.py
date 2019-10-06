@@ -41,7 +41,7 @@ cursor.execute('''ALTER TABLE `scoreData`
 ''')
 
 cursor.execute('''ALTER TABLE `linkData`
-    CHANGE COLUMN `index` `scoreData_index` int,
+    CHANGE COLUMN `index` `linkData_index` int,
     CHANGE COLUMN `0` `link` text
 ''')
 
