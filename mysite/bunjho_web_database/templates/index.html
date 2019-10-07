@@ -1,0 +1,38 @@
+<table>
+    <tr>
+        <th>科目No</th>
+        <th>学部</th>
+        <th>科目名</th>
+        <th>担当教員名</th>
+        <th>校地</th>
+        <th>単位数</th>
+        <th>登録者数</th>
+        <th>A</th>
+        <th>B</th>
+        <th>C</th>
+        <th>D</th>
+        <th>F</th>
+        <th>その他</th>
+        <th>平均評価</th>
+        <th>シラバスへのリンク</th>
+    </tr>
+    {% for item in data %}
+    <tr>
+        <td>{{ item.subjectno }}</td>
+        <td>{{ item.faculty }}</td>
+        <td>{{ item.subjectname }}</td>
+        <td>{{ item.teacher }}</td>
+        <td>{{ item.place }}</td>
+        <td>{{ item.units }}</td>
+        <td>{{ item.member }}</td>
+        <td>{{ item.a }}</td>
+        <td>{{ item.b }}</td>
+        <td>{{ item.c }}</td>
+        <td>{{ item.d }}</td>
+        <td>{{ item.f }}</td>
+        <td>{{ item.other }}</td>
+        <td>{{ item.averagegpa }}</td>
+        <td>{{ item.link }}</td>
+    </tr>
+    {% endfor %}
+</table>
