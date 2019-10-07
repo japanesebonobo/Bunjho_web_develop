@@ -22,14 +22,12 @@ class Bunjho_web_database(models.Model):
     link = models.TextField()
 
 class Allsubjectdata(models.Model):
-    subjectdata_index = models.IntegerField(db_column='subjectData_index', blank=True, null=True, primary_key=True)  # Field name made lowercase.
-    subjectno = models.TextField(db_column='subjectNo', blank=True, null=True)  # Field name made lowercase.
+    subjectno = models.TextField(db_column='subjectNo', blank=True, null=False, primary_key=True)  # Field name made lowercase.
     faculty = models.TextField(blank=True, null=True)
     subjectname = models.TextField(db_column='subjectName', blank=True, null=True)  # Field name made lowercase.
     teacher = models.TextField(blank=True, null=True)
     place = models.TextField(blank=True, null=True)
     units = models.TextField(blank=True, null=True)
-    scoredata_index = models.IntegerField(db_column='scoreData_index', blank=True, null=True)  # Field name made lowercase.
     member = models.IntegerField(blank=True, null=True)
     a = models.FloatField(db_column='A', blank=True, null=True)  # Field name made lowercase.
     b = models.FloatField(db_column='B', blank=True, null=True)  # Field name made lowercase.
@@ -38,9 +36,11 @@ class Allsubjectdata(models.Model):
     f = models.FloatField(db_column='F', blank=True, null=True)  # Field name made lowercase.
     other = models.IntegerField(blank=True, null=True)
     averagegpa = models.FloatField(db_column='averageGPA', blank=True, null=True)  # Field name made lowercase.
-    linkdata_index = models.IntegerField(db_column='linkData_index', blank=True, null=True)  # Field name made lowercase.
     link = models.TextField(blank=True, null=True)
 
     class Meta:
         managed = False
         db_table = 'AllSubjectData'
+
+    def __str__(self):
+        return self.subjectno
