@@ -1,7 +1,7 @@
 h1{
   font-size: 30px;
   color: #fff;
-  text-transform: uppercase;
+  text-transform: capitalize;
   font-weight: 300;
   text-align: center;
   margin-bottom: 15px;
