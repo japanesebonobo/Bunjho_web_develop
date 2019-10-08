@@ -1,38 +1,71 @@
-<table>
-    <tr>
-        <th>科目No</th>
-        <th>学部</th>
-        <th>科目名</th>
-        <th>担当教員名</th>
-        <th>校地</th>
-        <th>単位数</th>
-        <th>登録者数</th>
-        <th>A</th>
-        <th>B</th>
-        <th>C</th>
-        <th>D</th>
-        <th>F</th>
-        <th>その他</th>
-        <th>平均評価</th>
-        <th>シラバスへのリンク</th>
-    </tr>
-    {% for item in data %}
-    <tr>
-        <td>{{ item.subjectno }}</td>
-        <td>{{ item.faculty }}</td>
-        <td>{{ item.subjectname }}</td>
-        <td>{{ item.teacher }}</td>
-        <td>{{ item.place }}</td>
-        <td>{{ item.units }}</td>
-        <td>{{ item.member }}</td>
-        <td>{{ item.a }}</td>
-        <td>{{ item.b }}</td>
-        <td>{{ item.c }}</td>
-        <td>{{ item.d }}</td>
-        <td>{{ item.f }}</td>
-        <td>{{ item.other }}</td>
-        <td>{{ item.averagegpa }}</td>
-        <td>{{ item.link }}</td>
-    </tr>
-    {% endfor %}
-</table>
+　{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    <script type="text/javascript" src="{% static 'js/index.js' %}"></script>
+    </head>
+
+    <section>
+        <!--for demo wrap-->
+        <h1>Culture and Information Science</h1>
+        <div class="tbl-header">
+            <table cellpadding="0" cellspacing="0" border="0">
+                <thead>
+                    <tr>
+                        <th>科目No</th>
+                        <th>学部</th>
+                        <th>科目名</th>
+                        <th>担当教員名</th>
+                        <th>校地</th>
+                        <th>単位数</th>
+                        <th>登録者数</th>
+                        <th>A</th>
+                        <th>B</th>
+                        <th>C</th>
+                        <th>D</th>
+                        <th>F</th>
+                        <th>その他</th>
+                        <th>平均評価</th>
+                        <th>シラバスへのリンク</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+        <div class="tbl-content">
+            <table cellpadding="0" cellspacing="0" border="0">
+                <tbody>
+                    {% for item in data %}
+                    <tr>
+                        <td>{{ item.subjectno }}</td>
+                        <td>{{ item.faculty }}</td>
+                        <td>{{ item.subjectname }}</td>
+                        <td>{{ item.teacher }}</td>
+                        <td>{{ item.place }}</td>
+                        <td>{{ item.units }}</td>
+                        <td>{{ item.member }}</td>
+                        <td>{{ item.a }}</td>
+                        <td>{{ item.b }}</td>
+                        <td>{{ item.c }}</td>
+                        <td>{{ item.d }}</td>
+                        <td>{{ item.f }}</td>
+                        <td>{{ item.other }}</td>
+                        <td>{{ item.averagegpa }}</td>
+                        <td>{{ item.link }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- follow me template -->
+    <div class="made-with-love">
+        Made with
+        <i>♥</i> by
+        <a target="_blank" href="https://codepen.io/nikhil8krishnan">Nikhil Krishnan</a>
+    </div>
+
+    <link rel="stylesheet" href="{% static 'index.css' %}">
+</html>
