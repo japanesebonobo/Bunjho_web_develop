@@ -52,7 +52,9 @@
                         <td>{{ item.f }}</td>
                         <td>{{ item.other }}</td>
                         <td>{{ item.averagegpa }}</td>
-                        <td>{{ item.link }}</td>
+                        <td>
+                            <a href="{{ item.link }}" target="_blank">{{ item.link }}</a>
+                        </td>
                     </tr>
                     {% endfor %}
                 </tbody>
