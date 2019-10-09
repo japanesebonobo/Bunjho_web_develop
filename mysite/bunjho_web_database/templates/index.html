@@ -40,8 +40,8 @@
                     <tr>
                         <td>{{ item.subjectno }}</td>
                         <td>{{ item.faculty }}</td>
-                        <td>{{ item.subjectname }}</td>
-                        <td>{{ item.teacher }}</td>
+                        <td>{{ item.subjectname  | linebreaksbr}}</td>
+                        <td>{{ item.teacher  | linebreaksbr}}</td>
                         <td>{{ item.place }}</td>
                         <td>{{ item.units }}</td>
                         <td>{{ item.member }}</td>
@@ -53,7 +53,7 @@
                         <td>{{ item.other }}</td>
                         <td>{{ item.averagegpa }}</td>
                         <td>
-                            <a href="{{ item.link }}" target="_blank">{{ item.link }}</a>
+                            <a href="{{ item.link }}" target="_blank">リンク</a>
                         </td>
                     </tr>
                     {% endfor %}
