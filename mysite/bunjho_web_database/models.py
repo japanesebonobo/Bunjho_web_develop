@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 class Bunjho_web_database(models.Model):
     subjectData_index = models.IntegerField()
-    subjectNo = models.TextField()
+    subjectNo = models.IntegerField()
     faculty = models.TextField()
     subjectName = models.TextField()
     teacher = models.TextField()
