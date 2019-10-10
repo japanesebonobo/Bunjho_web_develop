@@ -26,7 +26,7 @@
                         <th>C</th>
                         <th>D</th>
                         <th>F</th>
-                        <th>その他</th>
+                        <!-- <th>その他</th> -->
                         <th>平均評価</th>
                         <th>シラバスへのリンク</th>
                     </tr>
@@ -44,14 +44,21 @@
                         <td>{{ item.teacher  | linebreaksbr}}</td>
                         <td>{{ item.place }}</td>
                         <td>{{ item.units }}</td>
-                        <td>{{ item.member }}</td>
-                        <td>{{ item.a }}</td>
-                        <td>{{ item.b }}</td>
-                        <td>{{ item.c }}</td>
-                        <td>{{ item.d }}</td>
-                        <td>{{ item.f }}</td>
-                        <td>{{ item.other }}</td>
-                        <td>{{ item.averagegpa }}</td>
+                        <td>{% if item.member != None %}{{ item.member }}{% endif %}
+                            {% if item.member == None %}{% endif %}</td>
+                        <td>{% if item.a != None %}{{ item.a }}{% endif %}
+                            {% if item.a == None %}{% endif %}</td>
+                        <td>{% if item.b != None %}{{ item.b }}{% endif %}
+                            {% if item.b == None %}{% endif %}</td>
+                        <td>{% if item.c != None %}{{ item.c }}{% endif %}
+                            {% if item.c == None %}{% endif %}</td>
+                        <td>{% if item.d != None %}{{ item.d }}{% endif %}
+                            {% if item.d == None %}{% endif %}</td>
+                        <td>{% if item.f != None %}{{ item.f }}{% endif %}
+                            {% if item.f == None %}{% endif %}</td>
+                        <!-- <td>{{ item.other }}</td> -->
+                        <td>{% if item.averagegpa != None %}{{ item.averagegpa }}{% endif %}
+                            {% if item.averagegpa == None %}{% endif %}</td>
                         <td>
                             <a href="{{ item.link }}" target="_blank">リンク</a>
                         </td>

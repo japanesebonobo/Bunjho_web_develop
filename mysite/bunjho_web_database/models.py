@@ -34,7 +34,7 @@ class Allsubjectdata(models.Model):
     c = models.FloatField(db_column='C', blank=True, null=True)  # Field name made lowercase.
     d = models.FloatField(db_column='D', blank=True, null=True)  # Field name made lowercase.
     f = models.FloatField(db_column='F', blank=True, null=True)  # Field name made lowercase.
-    other = models.IntegerField(blank=True, null=True)
+    # other = models.IntegerField(blank=True, null=True) 
     averagegpa = models.FloatField(db_column='averageGPA', blank=True, null=True)  # Field name made lowercase.
     link = models.TextField(blank=True, null=True)
 
