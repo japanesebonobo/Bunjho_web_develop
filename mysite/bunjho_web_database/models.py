@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 class Bunjho_web_database(models.Model):
     subjectData_index = models.IntegerField()
-    subjectNo = models.IntegerField()
+    subjectNo = models.TextField()
     faculty = models.TextField()
     subjectName = models.TextField()
     teacher = models.TextField()
@@ -22,7 +22,7 @@ class Bunjho_web_database(models.Model):
     link = models.TextField()
 
 class Allsubjectdata(models.Model):
-    subjectno = models.TextField(db_column='subjectNo', blank=True, null=False, primary_key=True)  # Field name made lowercase.
+    subjectno = models.IntegerField(db_column='subjectNo', blank=True, null=False, primary_key=True)  # Field name made lowercase.
     faculty = models.TextField(blank=True, null=True)
     subjectname = models.TextField(db_column='subjectName', blank=True, null=True)  # Field name made lowercase.
     teacher = models.TextField(blank=True, null=True)
