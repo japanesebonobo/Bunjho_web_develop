@@ -153,10 +153,6 @@ async def main():
         CHANGE COLUMN `5` `units` text
     ''')
 
-    cursor.execute('''update AllSubjectData set AllSubjectData.subjectName = substring(subjectName, 1, instr(subjectName,'\n')) 
-    where AllSubjectData.subjectNo = AllSubjectData.subjectNo
-    ''')
-
     cursor.execute('''ALTER TABLE `linkData`
         CHANGE COLUMN `index` `linkData_index` int,
         CHANGE COLUMN `0` `link` text
@@ -190,6 +186,11 @@ async def main():
     ON
     scoreData.scoreData_index = linkData.linkData_index''')
     print('Create Table successful.')
+
+    #科目名の英語削除
+    cursor.execute('''UPDATE AllSubjectData SET AllSubjectData.subjectName = SUBSTRING(subjectName, 1, INSTR(subjectName,'\n')) 
+    WHERE AllSubjectData.subjectNo = AllSubjectData.subjectNo
+    ''')
 
 if __name__=='__main__':
     asyncio.run(main())
