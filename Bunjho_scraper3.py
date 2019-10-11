@@ -170,11 +170,6 @@ async def main():
         CHANGE COLUMN `7` `averageGPA` float
     ''')
 
-    cursor.execute('''ALTER TABLE `linkData`
-        CHANGE COLUMN `index` `linkData_index` int,
-        CHANGE COLUMN `0` `link` text
-    ''')
-
     # AllSubjectDataテーブルの作成 
     cursor.execute('''CREATE TABLE AllSubjectData
     SELECT *
