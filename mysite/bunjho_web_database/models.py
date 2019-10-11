@@ -1,26 +1,5 @@
 from django.db import models
 
-# Create your models here.
-class Bunjho_web_database(models.Model):
-    subjectData_index = models.IntegerField()
-    subjectNo = models.TextField()
-    faculty = models.TextField()
-    subjectName = models.TextField()
-    teacher = models.TextField()
-    place = models.TextField()
-    units = models.TextField()
-    scoreData_index = models.IntegerField()
-    member = models.IntegerField()
-    A = models.FloatField()
-    B = models.FloatField()
-    C = models.FloatField()
-    D = models.FloatField()
-    F = models.FloatField()
-    other = models.IntegerField()
-    averageGPA = models.FloatField()
-    linkData_index = models.IntegerField()
-    link = models.TextField()
-
 class Allsubjectdata(models.Model):
     subjectno = models.IntegerField(db_column='subjectNo', blank=True, null=False, primary_key=True)  # Field name made lowercase.
     faculty = models.TextField(blank=True, null=True)

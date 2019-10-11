@@ -141,6 +141,7 @@ async def main():
     cursor = conn.cursor()
 
     sql_sentence.my_sql_sentence(cursor)
+    print('ALL SUCCEED!')
 
 if __name__=='__main__':
     asyncio.run(main())
