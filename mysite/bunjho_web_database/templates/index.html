@@ -10,6 +10,16 @@
     <section>
         <!--for demo wrap-->
         <h1>Culture & Information Science<br>Subject List</h1>
+
+        <form action="" method="POST">
+                {{ formset.management_form }}
+                {% for form in formset %}
+                    {{ form }}<br>
+                {% endfor %}
+                {% csrf_token %}
+                <button type="submit">検索</button>
+        </form>
+
         <div class="tbl-header">
             <table cellpadding="0" cellspacing="0" border="0">
                 <thead>
