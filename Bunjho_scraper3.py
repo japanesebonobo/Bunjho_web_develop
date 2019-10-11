@@ -180,12 +180,14 @@ async def main():
     JOIN linkData
     ON
     scoreData.scoreData_index = linkData.linkData_index''')
-    print('Create Table successful.')
 
     #科目名の英語削除
     cursor.execute('''UPDATE AllSubjectData SET AllSubjectData.subjectName = SUBSTRING(subjectName, 1, INSTR(subjectName,'\n')) 
     WHERE AllSubjectData.subjectNo = AllSubjectData.subjectNo
     ''')
+
+    print('Create Table successful.')
+
 
 if __name__=='__main__':
     asyncio.run(main())
