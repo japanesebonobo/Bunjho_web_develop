@@ -153,6 +153,15 @@ async def main():
         CHANGE COLUMN `5` `units` text
     ''')
 
+    cursor.execute('''update AllSubjectData set AllSubjectData.subjectName = substring(subjectName, 1, instr(subjectName,'\n')) 
+    where AllSubjectData.subjectNo = AllSubjectData.subjectNo
+    ''')
+
+    cursor.execute('''ALTER TABLE `linkData`
+        CHANGE COLUMN `index` `linkData_index` int,
+        CHANGE COLUMN `0` `link` text
+    ''')
+
     cursor.execute('''ALTER TABLE `scoreData`
         CHANGE COLUMN `index` `scoreData_index` int,
         CHANGE COLUMN `0` `member` int,
