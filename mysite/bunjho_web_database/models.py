@@ -42,3 +42,4 @@ GENRE_CHOICES = {
 class User(models.Model):
     faculty = models.TextField('課程', max_length=1, choices=GENERATION_CHOICES)
     subjectno = models.TextField('科目ジャンル', max_length=1, choices=GENRE_CHOICES)
+    subjectname = models.CharField('名前', max_length=100)
