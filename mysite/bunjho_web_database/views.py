@@ -44,6 +44,10 @@ def index_page(request):
             if subjectname:
                 q = Q(subjectname__icontains=str(subjectname))
                 queries.append(q)
+            teacher = form.cleaned_data.get('teacher')
+            if teacher:
+                q = Q(teacher__icontains=str(teacher))
+                queries.append(q)
         if queries:
             base_query = queries.pop()
             for query in queries:
