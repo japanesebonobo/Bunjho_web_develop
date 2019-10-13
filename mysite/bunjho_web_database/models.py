@@ -1,7 +1,7 @@
 from django.db import models
 
 class Allsubjectdata(models.Model):
-    subjectno = models.IntegerField(db_column='subjectNo', blank=True, null=False, primary_key=True) 
+    subjectno = models.TextField(db_column='subjectNo', blank=True, null=False, primary_key=True) 
     faculty = models.TextField(blank=True, null=True)
     subjectname = models.TextField(db_column='subjectName', blank=True, null=True) 
     teacher = models.TextField(blank=True, null=True)
@@ -36,8 +36,9 @@ GENRE_CHOICES = {
     ('a', 'A群'),
     ('b', 'B群'),
     ('c', 'C群'),
+    ('o', 'その他')
 }
 
 class User(models.Model):
-    faculty = models.CharField('課程', max_length=1, choices=GENERATION_CHOICES)
-    genre = models.CharField('科目ジャンル', max_length=1, choices=GENRE_CHOICES)
+    faculty = models.TextField('課程', max_length=1, choices=GENERATION_CHOICES)
+    subjectno = models.TextField('科目ジャンル', max_length=1, choices=GENRE_CHOICES)
