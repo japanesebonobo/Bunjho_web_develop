@@ -113,7 +113,7 @@ async def main():
     await browser.close()
 
     print("DataFrame作成")
-    url = 'mysql+pymysql://root:@localhost/bunjho_web_database?charset=utf8mb4'
+    url = 'mysql+pymysql://root:pass@localhost/bunjho_web_database?charset=utf8mb4'
     engine = sa.create_engine(url, echo=True)
 
     df1 = pd.concat([subjectData,linkData],axis=1)
@@ -129,6 +129,7 @@ async def main():
     'host': 'localhost',
     'db': 'bunjho_web_database',  # Database Name
     'user': 'root',
+    'password':'pass',
     'charset': 'utf8mb4',
     }
  
