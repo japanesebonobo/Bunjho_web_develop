@@ -48,6 +48,14 @@ def index_page(request):
             if teacher:
                 q = Q(teacher__icontains=str(teacher))
                 queries.append(q)
+            a_thirty_checks = request.POST.get('a_thirty_checks')
+            if a_thirty_checks:
+                q = Q(a__gte='30.0')
+                queries.append(q)
+            rakutan_checks = request.POST.get('rakutan_checks')
+            if rakutan_checks:
+                q = Q(f__lte='15.0')
+                queries.append(q)
         if queries:
             base_query = queries.pop()
             for query in queries:

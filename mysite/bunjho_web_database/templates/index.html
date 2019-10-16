@@ -12,12 +12,14 @@
         <h1>Culture & Information Science<br>Subject List</h1>
 
         <form action="" method="POST">
-                {{ formset.management_form }}
-                {% for form in formset %}
-                    {{ form }}<br>
-                {% endfor %}
-                {% csrf_token %}
-                <button type="submit">検索</button>
+            {{ formset.management_form }}
+            {% for form in formset %}
+                {{ form }}<br>
+            {% endfor %}
+            {% csrf_token %}
+            <input type='checkbox' name='a_thirty_checks' value='1'>A率30%以上の科目
+            <input type='checkbox' name='rakutan_checks' value='2'>F率15%以下の科目
+            <button type="submit">検索</button>
         </form>
 
         <div class="tbl-header">
