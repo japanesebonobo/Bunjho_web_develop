@@ -1,0 +1,11 @@
+runtime: python37 #使用言語
+#entrypoint: gunicorn -b :$PORT Bunjho_web_develop.wsgi:application #wsgiまでのpath的な？
+entrypoint: gunicorn -b :$PORT BunjoWebApps.wsgi:application #wsgiまでのpath的な？
+
+
+#デプロイした後にアクセスできるようにします。
+handlers:
+  - url: .*
+    script: auto
+
+#で
