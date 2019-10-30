@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 　{% load static %}
 <!DOCTYPE html>
 <html>
@@ -89,4 +90,97 @@
     </div>
 
     <link rel="stylesheet" href="{% static 'index.css' %}">
+=======
+　{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    <script type="text/javascript" src="{% static 'js/index.js' %}"></script>
+    </head>
+
+    <section>
+        <!--for demo wrap-->
+        <h1>Culture & Information Science<br>Subject List</h1>
+
+        <form action="" method="POST">
+            {{ formset.management_form }}
+            {% for form in formset %}
+                {{ form }}<br>
+            {% endfor %}
+            {% csrf_token %}
+            <input type='checkbox' name='a_thirty_checks' value='1'>A率30%以上の科目
+            <input type='checkbox' name='rakutan_checks' value='2'>F率15%以下の科目
+            <button type="submit">検索</button>
+        </form>
+
+        <div class="tbl-header">
+            <table cellpadding="0" cellspacing="0" border="0">
+                <thead>
+                    <tr>
+                        <!-- <th>科目No</th> -->
+                        <!-- <th>学部</th> -->
+                        <th>科目名</th>
+                        <th>担当教員名</th>
+                        <!--　<th>校地</th>　-->
+                        <th>単位数</th>
+                        <th>登録者数</th>
+                        <th>A</th>
+                        <th>B</th>
+                        <th>C</th>
+                        <th>D</th>
+                        <th>F</th>
+                        <!-- <th>その他</th> -->
+                        <th>平均評価</th>
+                        <th>シラバスへのリンク</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+        <div class="tbl-content">
+            <table cellpadding="0" cellspacing="0" border="0">
+                <tbody>
+                    {% for item in data %}
+                    <tr>
+                        <!-- <td>{{ item.subjectno }}</td> -->
+                        <!-- <td>{{ item.faculty }}</td> -->
+                        <td>{{ item.subjectname  | linebreaksbr}}</td>
+                        <td>{{ item.teacher  | linebreaksbr}}</td>
+                        <!-- <td>{{ item.place }}</td> -->
+                        <td>{{ item.units }}</td>
+                        <td>{% if item.member != None %}{{ item.member }}{% endif %}
+                            {% if item.member == None %}{% endif %}</td>
+                        <td>{% if item.a != None %}{{ item.a }}{% endif %}
+                            {% if item.a == None %}{% endif %}</td>
+                        <td>{% if item.b != None %}{{ item.b }}{% endif %}
+                            {% if item.b == None %}{% endif %}</td>
+                        <td>{% if item.c != None %}{{ item.c }}{% endif %}
+                            {% if item.c == None %}{% endif %}</td>
+                        <td>{% if item.d != None %}{{ item.d }}{% endif %}
+                            {% if item.d == None %}{% endif %}</td>
+                        <td>{% if item.f != None %}{{ item.f }}{% endif %}
+                            {% if item.f == None %}{% endif %}</td>
+                        <!-- <td>{{ item.other }}</td> -->
+                        <td>{% if item.averagegpa != None %}{{ item.averagegpa }}{% endif %}
+                            {% if item.averagegpa == None %}{% endif %}</td>
+                        <td>
+                            <a href="{{ item.link }}" target="_blank">リンク</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- follow me template -->
+    <div class="made-with-love">
+        Made with
+        <i>♥</i> by
+        <a target="_blank" href="https://codepen.io/nikhil8krishnan">Nikhil Krishnan</a>
+    </div>
+
+    <link rel="stylesheet" href="{% static 'index.css' %}">
+>>>>>>> origin/master
 </html>
